@@ -14,10 +14,8 @@ let number = function getRandomIntInclusive(min, max) {
 
 fetch(`https://swapi.co/api/planets/${number(1, 61)}/`)
   .then(res => res.json())
-  .then(result => {
-    planet = result;
-    console.log(planet);
-  });
+  .then(result => localStorage.setItem('planet', JSON.stringify(result)))
+  .then(console.log(localStorage.getItem('planet')));
 
 const Title = styled.h1`
   color: yellow;
