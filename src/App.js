@@ -13,7 +13,6 @@ let number = function getRandomIntInclusive(min, max) {
  * Styled Components
  * Palette #F7DE00#FCB426#E4E6E6#5A5A5A#393939
  *
- * @todo button randomize planet funcitionality
  * @todo add breakpoint
  * @todo create remote repo
  * @todo host to github pages
@@ -30,7 +29,7 @@ const Main = styled.main`
     margin: 1em auto;
     max-width: 300px;
     background-color: #e4e6e6;
-    border: 3px solid #fcb426;
+    border-radius: 15px;
     padding: 20px;
   }
 
@@ -41,8 +40,12 @@ const Main = styled.main`
   }
 
   .randomButton {
-    background-color: #e4e6e6;
-    border: 2px solid #fcb426;
+    background-color: #fcb426;
+    padding: 10px;
+    border-radius: 15px;
+    color: #e4e6e6;
+    font-size: 1.7em;
+    font-weight: bold;
   }
 `;
 
