@@ -10,10 +10,23 @@ let number = function getRandomIntInclusive(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
-const Title = styled.h1`
-  color: yellow;
+// Styled Components
+// Palette #F7DE00#FCB426#E4E6E6#5A5A5A#393939
+const Container = styled.main`
+  margin: auto auto;
+  background-color: #e4e6e6;
+  color: #393939;
+  border: 3px solid #fcb426;
+  padding: 15px;
+  width: 300px;
+  height: 200px;
 `;
 
+const PlanetName = styled.h1`
+  color: #fcb426;
+`;
+
+// React Component
 function App() {
   const [planet, setPlanet] = useState({});
 
@@ -23,33 +36,46 @@ function App() {
       .then(function(result) {
         return JSON.stringify(result);
       })
-      .then(function(result) {
-        console.log(result);
-        return JSON.parse(result);
+      .then(function(res) {
+        console.log(res);
+        return JSON.parse(res);
       })
-      .then(rs => {
-        console.log(rs);
-        setPlanet(rs);
+      .then(res => {
+        console.log(res);
+        setPlanet(res);
       });
   }, []);
   return (
-    <div className="App">
-      <main>
-        <Title>Star Wars Planets</Title>
+    <div className="App" style={{ backgroundColor: '#000' }}>
+      <Container>
         <section>
-          <h1>{planet.name}</h1>
-          <ol>
-            <li>POPULATION:{planet.population}</li>
-            <li>CLIMATE: {planet.climate}</li>
-            <li>TERRAIN: {planet.terrain}</li>
+          <PlanetName>
+            {planet.name ? planet.name.toUpperCase() : planet.name}
+          </PlanetName>
+          <ol style={{ listStyle: 'none' }}>
+            <li>
+              <strong>POPULATION: </strong>
+              {planet.population}
+            </li>
+            <li>
+              <strong>CLIMATE: </strong>
+              {planet.climate}
+            </li>
+            <li>
+              <strong>TERRAIN: </strong>
+              {planet.terrain}
+            </li>
           </ol>
           <div>
-            Featured in{' '}
-            {typeof planet.films === 'object' ? planet.films.length : null}{' '}
-            films
+            Featured in {planet.films ? planet.films.length : null}
+            {planet.films
+              ? planet.films.length == 1
+                ? ' film.'
+                : ' films.'
+              : null}
           </div>
         </section>
-      </main>
+      </Container>
     </div>
   );
 }
