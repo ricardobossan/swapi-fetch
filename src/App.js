@@ -9,28 +9,48 @@ let number = function getRandomIntInclusive(min, max) {
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
-
-// Styled Components
-// Palette #F7DE00#FCB426#E4E6E6#5A5A5A#393939
-const Container = styled.main`
-  margin: auto auto;
-  background-color: #e4e6e6;
+/**
+ * Styled Components
+ * Palette #F7DE00#FCB426#E4E6E6#5A5A5A#393939
+ *
+ * @todo button randomize planet funcitionality
+ * @todo add breakpoint
+ * @todo create remote repo
+ * @todo host to github pages
+ */
+const Main = styled.main`
+  flex-direction: column;
+  align-items: center;
+  display: flex;
+  margin: auto;
+  height: auto;
   color: #393939;
-  border: 3px solid #fcb426;
-  padding: 15px;
-  width: 300px;
-  height: 200px;
-`;
 
-const PlanetName = styled.h1`
-  color: #fcb426;
+  .planetBox {
+    margin: 1em auto;
+    max-width: 300px;
+    background-color: #e4e6e6;
+    border: 3px solid #fcb426;
+    padding: 20px;
+  }
+
+  .planetName {
+    color: #fcb426;
+    margin: 0;
+    padding: 0;
+  }
+
+  .randomButton {
+    background-color: #e4e6e6;
+    border: 2px solid #fcb426;
+  }
 `;
 
 // React Component
 function App() {
   const [planet, setPlanet] = useState({});
 
-  useEffect(() => {
+  const randomizePlanet = () => {
     fetch(`https://swapi.co/api/planets/${number(1, 61)}/`)
       .then(res => res.json())
       .then(function(result) {
@@ -44,39 +64,51 @@ function App() {
         console.log(res);
         setPlanet(res);
       });
-  }, []);
+  };
+
+  useEffect(randomizePlanet, []);
   return (
-    <div className="App" style={{ backgroundColor: '#000' }}>
-      <Container>
-        <section>
-          <PlanetName>
-            {planet.name ? planet.name.toUpperCase() : planet.name}
-          </PlanetName>
-          <ol style={{ listStyle: 'none' }}>
-            <li>
-              <strong>POPULATION: </strong>
-              {planet.population}
-            </li>
-            <li>
-              <strong>CLIMATE: </strong>
-              {planet.climate}
-            </li>
-            <li>
-              <strong>TERRAIN: </strong>
-              {planet.terrain}
-            </li>
-          </ol>
-          <div>
-            Featured in {planet.films ? planet.films.length : null}
-            {planet.films
-              ? planet.films.length == 1
-                ? ' film.'
-                : ' films.'
-              : null}
-          </div>
-        </section>
-      </Container>
-    </div>
+    <Main className="App" style={{ backgroundColor: '#000' }}>
+      <div className="planetBox">
+        <h1 className="planetName">
+          {planet.name ? planet.name.toUpperCase() : planet.name}
+        </h1>
+        <ol
+          style={{
+            listStyle: 'none',
+            paddingLeft: '15px',
+            paddingRight: '15px',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'start'
+          }}
+        >
+          <li>
+            <strong>POPULATION: </strong>
+            {planet.population}
+          </li>
+          <li>
+            <strong>CLIMATE: </strong>
+            {planet.climate}
+          </li>
+          <li>
+            <strong>TERRAIN: </strong>
+            {planet.terrain}
+          </li>
+        </ol>
+        <div>
+          Featured in {planet.films ? planet.films.length : null}
+          {planet.films
+            ? planet.films.length == 1
+              ? ' film.'
+              : ' films.'
+            : null}
+        </div>
+      </div>
+      <button onClick={randomizePlanet} className="randomButton">
+        NEXT
+      </button>
+    </Main>
   );
 }
 
