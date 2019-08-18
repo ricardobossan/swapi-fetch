@@ -1,5 +1,9 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Credit
+
+The martian favicon was a free sample from https://icons8.com/icons/set/space.
+
 ## Available Scripts
 
 In the project directory, you can run:
