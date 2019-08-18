@@ -20,32 +20,54 @@ let number = function getRandomIntInclusive(min, max) {
 const Main = styled.main`
   flex-direction: column;
   align-items: center;
+  justify-content: start;
   display: flex;
   margin: auto;
   height: auto;
   color: #393939;
 
   .planetBox {
-    margin: 1em auto;
-    max-width: 300px;
+    margin: 1em;
     background-color: #e4e6e6;
     border-radius: 15px;
     padding: 20px;
+    font-size: 1.3em;
+    @media (min-width: 768px) {
+      font-size: 2em;
+    }
   }
 
   .planetName {
-    color: #fcb426;
+    color: #fa9220;
     margin: 0;
     padding: 0;
   }
 
   .randomButton {
-    background-color: #fcb426;
+    background-color: #fa9220;
     padding: 10px;
     border-radius: 15px;
     color: #e4e6e6;
     font-size: 1.7em;
     font-weight: bold;
+  }
+  ol {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    list-style: none;
+    padding-left: 15px;
+    padding-right: 15px;
+
+    li {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    strong {
+      margin-right: 10px;
+    }
   }
 `;
 
@@ -76,27 +98,18 @@ function App() {
         <h1 className="planetName">
           {planet.name ? planet.name.toUpperCase() : planet.name}
         </h1>
-        <ol
-          style={{
-            listStyle: 'none',
-            paddingLeft: '15px',
-            paddingRight: '15px',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'start'
-          }}
-        >
+        <ol>
           <li>
             <strong>POPULATION: </strong>
-            {planet.population}
+            <span>{planet.population}</span>
           </li>
           <li>
             <strong>CLIMATE: </strong>
-            {planet.climate}
+            <span>{planet.climate}</span>
           </li>
           <li>
             <strong>TERRAIN: </strong>
-            {planet.terrain}
+            <span>{planet.terrain}</span>
           </li>
         </ol>
         <div>
