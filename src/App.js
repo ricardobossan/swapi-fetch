@@ -13,8 +13,6 @@ let number = function getRandomIntInclusive(min, max) {
  * Styled Components
  * Palette #F7DE00#FCB426#E4E6E6#5A5A5A#393939
  *
- * @todo add breakpoint
- * @todo create remote repo
  * @todo host to github pages
  */
 const Main = styled.main`
